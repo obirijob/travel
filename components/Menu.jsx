@@ -15,14 +15,14 @@ import { Dimensions, TouchableOpacity } from 'react-native'
 
 const Menu = () => {
   const { width } = Dimensions.get('screen')
-  const itemWidth = (width - 40) / 5
+  const itemWidth = width / 5
   return (
     <View
       style={{
         marginTop: 20,
         flexDirection: 'row',
         alignItems: 'flex-end',
-        width: width - 40,
+        width: width,
       }}
     >
       <TouchableOpacity>

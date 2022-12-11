@@ -29,12 +29,12 @@ const PlacesCategory = ({ filterPlaces }) => {
       >
         <View
           style={{
-            marginRight: 10,
+            marginRight: 8,
             width: 100,
             height: 30,
             alignItems: 'center',
             justifyContent: isSelected ? 'center' : 'flex-end',
-            borderRadius: 10,
+            borderRadius: 5,
             opacity: isSelected ? 1 : 0.6,
             flexDirection: 'row',
           }}
@@ -89,8 +89,11 @@ const PlacesCategory = ({ filterPlaces }) => {
       keyExtractor={item => item.id}
       scrollEnabled={true}
       horizontal={true}
-      style={{ height: 50, flexGrow: 0 }}
+      style={{ flexGrow: 0 }}
       showsHorizontalScrollIndicator={false}
+      contentContainerStyle={{
+        padding: 20,
+      }}
     />
   )
 }

@@ -1,7 +1,7 @@
 /** @format */
 
 import { SafeAreaView, View } from 'moti'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Dimensions, ImageBackground } from 'react-native'
 import Colors from '../assets/Colors'
 import CustomText from '../components/CustomText'
@@ -10,20 +10,22 @@ import Place from '../components/Place'
 import PlacesCategory from '../components/PlacesCategory'
 import ProfileImage from '../components/ProfileImage'
 import { FlatList } from 'react-native'
+import ShuffleArray from '../helpers/ShuffleArray'
 
 const Discover = () => {
   const { places } = require('../assets/places')
+  const [loadedPlaces, setLoadedPlaces] = useState(places)
   const flatListRef = useRef()
   return (
     <ImageBackground
       source={require('../assets/images/planewing.jpg')}
-      blurRadius={50}
+      blurRadius={10}
     >
       <SafeAreaView
         style={{
-          height: Dimensions.get('screen').height - 40,
-          width: Dimensions.get('screen').width - 40,
-          margin: 20,
+          height: Dimensions.get('screen').height,
+          width: Dimensions.get('screen').width,
+          // margin: 20,
         }}
       >
         <View
@@ -33,6 +35,7 @@ const Discover = () => {
             alignItems: 'center',
             justifyContent: 'flex-end',
             marginTop: 20,
+            marginHorizontal: 20,
           }}
         >
           <ProfileImage
@@ -53,6 +56,7 @@ const Discover = () => {
             justifyContent: 'space-between',
             marginTop: 16,
             marginBottom: 20,
+            marginHorizontal: 20,
           }}
         >
           <CustomText
@@ -64,16 +68,28 @@ const Discover = () => {
             }}
           />
         </View>
-        <PlacesCategory />
+        <PlacesCategory
+          filterPlaces={c => {
+            if (c === 0) {
+              setLoadedPlaces(ShuffleArray(places))
+            } else {
+              let fil = [...places].filter(p => p.categories.includes(c))
+              setLoadedPlaces(ShuffleArray(fil))
+            }
+          }}
+        />
         <View style={{ flex: 1 }}>
           <FlatList
-            data={places}
+            data={loadedPlaces}
             ref={flatListRef}
             renderItem={({ item }) => <Place {...item} />}
             keyExtractor={item => item.id}
             scrollEnabled={true}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{
+              paddingHorizontal: 20,
+            }}
           />
         </View>
         <Menu />
