@@ -5,6 +5,7 @@ import React, { useState, useRef } from 'react'
 import CustomText from './CustomText'
 import Colors from '../assets/Colors'
 import { FlatList, TouchableOpacity } from 'react-native'
+import colors from '../assets/Colors'
 
 const PlacesCategory = ({ filterPlaces }) => {
   const { categories, places } = require('../assets/places')
@@ -29,14 +30,15 @@ const PlacesCategory = ({ filterPlaces }) => {
       >
         <View
           style={{
-            marginRight: 8,
-            width: 100,
+            marginRight: id === 0 ? 8 : 20,
+            // width: 100,
             height: 30,
             alignItems: 'center',
             justifyContent: isSelected ? 'center' : 'flex-end',
             borderRadius: 5,
             opacity: isSelected ? 1 : 0.6,
             flexDirection: 'row',
+            paddingHorizontal: 10,
           }}
           animate={{
             backgroundColor: isSelected ? Colors.GREEN : Colors.WHITE,
@@ -53,29 +55,31 @@ const PlacesCategory = ({ filterPlaces }) => {
               color: isSelected ? Colors.WHITE : Colors.GREEN,
             }}
           />
-          {isSelected ||
-            (count && (
-              <View
+          {count && (
+            <View
+              style={{
+                backgroundColor: isSelected ? colors.WHITE : Colors.GREEN,
+                width: 20,
+                height: 20,
+                borderRadius: 5,
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: 5,
+                marginRight: -20,
+                borderColor: isSelected ? colors.GREEN : colors.WHITE,
+                borderWidth: 2,
+              }}
+            >
+              <CustomText
+                content={count}
                 style={{
-                  backgroundColor: Colors.GREEN,
-                  width: 20,
-                  height: 20,
-                  borderRadius: 5,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  margin: 5,
+                  fontFamily: 'mb',
+                  color: isSelected ? colors.GREEN : Colors.WHITE,
+                  fontSize: 10,
                 }}
-              >
-                <CustomText
-                  content={count}
-                  style={{
-                    fontFamily: 'mb',
-                    color: Colors.WHITE,
-                    fontSize: 10,
-                  }}
-                />
-              </View>
-            ))}
+              />
+            </View>
+          )}
         </View>
       </TouchableOpacity>
     )

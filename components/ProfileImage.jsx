@@ -1,31 +1,32 @@
 /** @format */
 
-import { Image } from 'moti';
-import React from 'react';
-import { StyleSheet } from 'react-native';
+import { Image, View } from 'moti'
+import React from 'react'
+import { StyleSheet } from 'react-native'
+import colors from '../assets/Colors'
 
 const ProfileImage = ({ style, source }) => {
   return (
-    <Image
+    <View
       style={{
-        width: 50,
-        height: 50,
-        borderRadius: 50,
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 9,
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 12.35,
-        elevation: 19,
-
-        ...style,
+        shadowColor: colors.GREEN,
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.8,
+        shadowRadius: 15,
       }}
-      source={source}
-    />
-  );
-};
+    >
+      <Image
+        style={{
+          width: 50,
+          height: 50,
+          borderRadius: 50,
+          ...style,
+        }}
+        source={source}
+      />
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   shadow: {
@@ -38,6 +39,6 @@ const styles = StyleSheet.create({
     elevation: 5,
     shaadowOffset: { width: 0, height: 1 },
   },
-});
+})
 
-export default ProfileImage;
+export default ProfileImage

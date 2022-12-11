@@ -11,11 +11,17 @@ import PlacesCategory from '../components/PlacesCategory'
 import ProfileImage from '../components/ProfileImage'
 import { FlatList } from 'react-native'
 import ShuffleArray from '../helpers/ShuffleArray'
+import Animated from 'react-native-reanimated'
 
 const Discover = () => {
   const { places } = require('../assets/places')
   const [loadedPlaces, setLoadedPlaces] = useState(places)
   const flatListRef = useRef()
+  const scrollX = React.useRef(new Animated.Value(0)).current
+  const { width, height } = Dimensions.get('screen')
+
+  const vp_width = width - 100
+
   return (
     <ImageBackground
       source={require('../assets/images/planewing.jpg')}
@@ -25,7 +31,6 @@ const Discover = () => {
         style={{
           height: Dimensions.get('screen').height,
           width: Dimensions.get('screen').width,
-          // margin: 20,
         }}
       >
         <View
@@ -79,10 +84,33 @@ const Discover = () => {
           }}
         />
         <View style={{ flex: 1 }}>
-          <FlatList
+          <Animated.FlatList
+            onScroll={Animated.event(
+              [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+              { useNativeDriver: true }
+            )}
             data={loadedPlaces}
             ref={flatListRef}
-            renderItem={({ item }) => <Place {...item} />}
+            renderItem={({ index, item }) => {
+              const inputRange = [
+                (index - 1) * vp_width,
+                index * vp_width,
+                (index + 1) * vp_width,
+              ]
+              const opacity = scrollX.interpolate({
+                inputRange,
+                outputRange: [0.6, 1, 0.6],
+              })
+              const scale = scrollX.interpolate({
+                inputRange,
+                outputRange: [1, 1, 0.9],
+              })
+              const transform = scrollX.interpolate({
+                inputRange,
+                outputRange: [0, 0, 20],
+              })
+              return <Place {...item} styles={{ opacity, scale, transform }} />
+            }}
             keyExtractor={item => item.id}
             scrollEnabled={true}
             horizontal={true}

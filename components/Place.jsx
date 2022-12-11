@@ -5,10 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { View, Image } from 'moti'
 import React from 'react'
 import { Dimensions } from 'react-native'
+import Animated from 'react-native-reanimated'
 import colors from '../assets/Colors'
 import constants from '../constants'
 import CustomText from './CustomText'
-const Place = ({ id, name, images, location, categories }) => {
+const Place = ({ id, name, images, location, categories, styles }) => {
   const placesData = require('../assets/places')
   const category = placesData.categories.filter(cat =>
     categories.includes(cat.id)
@@ -17,25 +18,25 @@ const Place = ({ id, name, images, location, categories }) => {
   const { width, height } = Dimensions.get('screen')
 
   return (
-    <View
+    <Animated.View
       style={{
         flex: 1,
         backgroundColor: colors[category[0].color.toUpperCase()] + '46',
         width: width - 100,
         // height: height - 400,
         marginRight: 15,
+        marginTop: height / 20,
+        marginBottom: 30,
         padding: 15,
-        borderRadius: 20,
+        borderRadius: 10,
+        borderBottomEndRadius: 20,
         borderBottomStartRadius: 60,
-      }}
-      intial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-      }}
-      exit={{
-        opacity: 0,
+        opacity: styles.opacity,
+        transform: [{ scale: styles.scale }, { translateX: styles.transform }],
+        shadowColor: colors.GREEN,
+        shadowOffset: { width: 3, height: 20 },
+        shadowOpacity: 0.8,
+        shadowRadius: 15,
       }}
     >
       <Image
@@ -45,8 +46,10 @@ const Place = ({ id, name, images, location, categories }) => {
         style={{
           borderRadius: 10,
           width: '100%',
-          height: '70%',
-          borderBottomStartRadius: 30,
+          height: '80%',
+          // borderBottomStartRadius: 30,
+          marginTop: -height / 20,
+          backgroundColor: colors.WHITE,
         }}
       />
       <View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
@@ -71,7 +74,7 @@ const Place = ({ id, name, images, location, categories }) => {
           />
         </View>
       </View>
-    </View>
+    </Animated.View>
   )
 }
 

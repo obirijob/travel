@@ -19,7 +19,7 @@ const Menu = () => {
   return (
     <View
       style={{
-        marginTop: 20,
+        marginTop: -20,
         flexDirection: 'row',
         alignItems: 'flex-end',
         width: width,
@@ -55,6 +55,10 @@ const Menu = () => {
             marginBottom: 10,
             alignItems: 'center',
             justifyContent: 'center',
+            shadowColor: colors.GREEN,
+            shadowOffset: { width: 0, height: 0 },
+            shadowOpacity: 0.8,
+            shadowRadius: 15,
           }}
         >
           <FontAwesomeIcon icon={faPlus} color={colors.WHITE} size={40} />

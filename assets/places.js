@@ -93,7 +93,7 @@ const categories = [
   {
     id: 2,
     label: 'Safari',
-    count: places.filter(item => item.categories.includes(3)).length,
+    count: places.filter(item => item.categories.includes(2)).length,
     icon: '',
     color: 'green',
   },

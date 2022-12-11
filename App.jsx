@@ -1,11 +1,12 @@
 /** @format */
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Discover from './views/Discover';
-import MyProfile from './views/MyProfile';
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Menu from './components/Menu'
+import Discover from './views/Discover'
+import MyProfile from './views/MyProfile'
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator()
 
 export default function App() {
   return (
@@ -15,5 +16,5 @@ export default function App() {
         <Stack.Screen name="MyProfile" component={MyProfile} />
       </Stack.Navigator>
     </NavigationContainer>
-  );
+  )
 }
