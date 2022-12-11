@@ -28,6 +28,15 @@ const Place = ({ id, name, images, location, categories }) => {
         borderRadius: 20,
         borderBottomStartRadius: 60,
       }}
+      intial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 1,
+      }}
+      exit={{
+        opacity: 0,
+      }}
     >
       <Image
         source={{

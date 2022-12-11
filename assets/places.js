@@ -66,11 +66,10 @@ const places = [
     id: 5,
     name: 'Kisii Travellers',
     images: [
-      'naturebg.jpg',
+      'waterfall.jpg',
       'cottagehouse.jpg',
       'oldhouse.jpg',
       'bycycle.jpg',
-      'waterfall.jpg',
       'lonehouse.jpg',
       'oldhouse.jpg',
     ],

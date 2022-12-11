@@ -21,7 +21,7 @@ const PlacesCategory = ({ filterPlaces }) => {
       <TouchableOpacity
         activeOpacity={1}
         onPress={() => {
-          flatListRef.current.scrollToIndex({ animated: true, index: id })
+          // flatListRef.current.scrollToIndex({ animated: true, index: id })
           setSelected(id)
           filterPlaces(id)
         }}

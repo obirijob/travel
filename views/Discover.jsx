@@ -55,7 +55,7 @@ const Discover = () => {
             alignItems: 'center',
             justifyContent: 'space-between',
             marginTop: 16,
-            marginBottom: 20,
+            // marginBottom: 0,
             marginHorizontal: 20,
           }}
         >
