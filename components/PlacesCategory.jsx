@@ -59,15 +59,15 @@ const PlacesCategory = ({ filterPlaces }) => {
             <View
               style={{
                 backgroundColor: isSelected ? colors.WHITE : Colors.GREEN,
-                width: 20,
-                height: 20,
+                width: 24,
+                height: '100%',
                 borderRadius: 5,
                 alignItems: 'center',
                 justifyContent: 'center',
                 margin: 5,
                 marginRight: -20,
                 borderColor: isSelected ? colors.GREEN : colors.WHITE,
-                borderWidth: 2,
+                borderWidth: 3,
               }}
             >
               <CustomText
