@@ -41,7 +41,7 @@ const places = [
       'safarimara.jpg',
       'marasafari.jpg',
     ],
-    location: 'Mombasa',
+    location: 'Narok',
     country: 'Kenya',
     details:
       'One of the most unique sights in the Fare Islands are "Drangarnir". Drangarnir are two sea stacks between Vágar and the islet Tindhólmur.',

@@ -6,6 +6,7 @@ import Search from './components/Search'
 import Discover from './views/Discover'
 import MyProfile from './views/MyProfile'
 import React, { useState } from 'react'
+import Details from './views/Details'
 
 const Stack = createNativeStackNavigator()
 export const AppDataContext = React.createContext({
@@ -21,8 +22,11 @@ export default function App() {
       }}
     >
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Navigator
+          screenOptions={{ animation: 'none', headerShown: false }}
+        >
           <Stack.Screen name="Discover" component={Discover} />
+          <Stack.Screen name="Details" component={Details} />
           <Stack.Screen name="MyProfile" component={MyProfile} />
         </Stack.Navigator>
         {search && <Search />}
