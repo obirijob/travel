@@ -21,8 +21,6 @@ import {
 import colors from '../assets/Colors'
 import CustomText from '../components/CustomText'
 import Carousel from '../components/Carousel'
-import constants from '../constants'
-import { SharedElement } from 'react-navigation-shared-element'
 
 const Details = ({ navigation, route }) => {
   const item = route.params //navigation.params
