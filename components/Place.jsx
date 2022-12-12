@@ -11,7 +11,7 @@ import { TouchableOpacity } from 'react-native'
 import colors from '../assets/Colors'
 import constants from '../constants'
 import CustomText from './CustomText'
-import { SharedElement } from 'react-native-shared-element'
+import { SharedElement } from 'react-navigation-shared-element'
 const Place = ({
   id,
   name,
@@ -71,7 +71,7 @@ const Place = ({
           shadowRadius: 15,
         }}
       >
-        <SharedElement style={{ height: '80%' }} id={`place.${id}.image`}>
+        <SharedElement style={{ height: '80%' }} id={`place-${id}-image-0`}>
           <Image
             source={{
               uri: `${constants.BACKEND}/${images[0]}`,

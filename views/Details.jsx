@@ -9,7 +9,7 @@ import {
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { useNavigation } from '@react-navigation/native'
+// import { useNavigation } from '@react-navigation/native'
 import { SafeAreaView } from 'moti'
 import React from 'react'
 import {
@@ -22,10 +22,11 @@ import colors from '../assets/Colors'
 import CustomText from '../components/CustomText'
 import Carousel from '../components/Carousel'
 import constants from '../constants'
+import { SharedElement } from 'react-navigation-shared-element'
 
-const Details = ({ route }) => {
-  const navigator = useNavigation()
-  const item = route.params
+const Details = ({ navigation, route }) => {
+  const item = route.params //navigation.params
+
   const { width, height } = Dimensions.get('screen')
   // angle-left
   return (
@@ -39,7 +40,7 @@ const Details = ({ route }) => {
           overflow: 'hidden',
         }}
       >
-        <Carousel images={item.images} />
+        <Carousel images={item.images} id={item.id} />
         <SafeAreaView style={{ position: 'absolute' }}>
           <View
             style={{
@@ -53,14 +54,22 @@ const Details = ({ route }) => {
               // zIndex: 99,
             }}
           >
-            <TouchableOpacity onPress={() => navigator.goBack()}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.goBack()
+              }}
+            >
               <FontAwesomeIcon
                 icon={faAngleLeft}
                 size={30}
                 color={colors.WHITE}
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity
+              onPress={() => {
+                console.log(item)
+              }}
+            >
               <View
                 style={{
                   width: 40,
@@ -199,9 +208,9 @@ const Details = ({ route }) => {
   )
 }
 
-Details.sharedElements = (navigation, otherNavigation, showing) => {
-  const item = route.params
-  return [`item.${item.id}.image`]
+Details.sharedElements = (route, otherRoute, showing) => {
+  // console.log(route.params)
+  return [`place-${route.params.id}-image-0`]
 }
 
 export default Details

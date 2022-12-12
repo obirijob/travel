@@ -1,14 +1,18 @@
 /** @format */
 
 import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Search from './components/Search'
 import Discover from './views/Discover'
 import MyProfile from './views/MyProfile'
 import React, { useState } from 'react'
 import Details from './views/Details'
 
-const Stack = createNativeStackNavigator()
+import { enableScreens } from 'react-native-screens'
+import { createSharedElementStackNavigator } from 'react-navigation-shared-element'
+
+enableScreens()
+
+const Stack = createSharedElementStackNavigator()
 export const AppDataContext = React.createContext({
   search: false,
 })
@@ -22,9 +26,7 @@ export default function App() {
       }}
     >
       <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{ animation: 'none', headerShown: false }}
-        >
+        <Stack.Navigator initialRouteName="Discover" headerMode="none">
           <Stack.Screen name="Discover" component={Discover} />
           <Stack.Screen name="Details" component={Details} />
           <Stack.Screen name="MyProfile" component={MyProfile} />

@@ -4,10 +4,11 @@ import { Image } from 'moti'
 import React, { useState } from 'react'
 import { Dimensions, TouchableOpacity } from 'react-native'
 import { FlatList, View } from 'react-native'
+import { SharedElement } from 'react-navigation-shared-element'
 import colors from '../assets/Colors'
 import constants from '../constants'
 
-const Carousel = ({ images }) => {
+const Carousel = ({ images, id }) => {
   const { width, height } = Dimensions.get('screen')
   const [coverImage, setCoverImage] = useState(true)
   return (
@@ -23,7 +24,7 @@ const Carousel = ({ images }) => {
         style={{
           overflow: 'visible',
         }}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <TouchableOpacity onPress={() => setCoverImage(!coverImage)}>
             <View
               key={item.id}
@@ -32,18 +33,23 @@ const Carousel = ({ images }) => {
                 height: (height * 2) / 3.5,
               }}
             >
-              <Image
-                style={{
-                  backgroundColor: colors.BLACK + '44',
-                  flex: 1,
-                  resizeMode: coverImage ? 'cover' : 'contain',
-                  borderRadius: 0,
-                  //   marginBottom: 10,
-                }}
-                resizeMode="contain"
-                resizeMethod="resize"
-                source={{ uri: `${constants.BACKEND}/${item}` }}
-              />
+              <SharedElement
+                id={`place-${id}-image-${index}`}
+                style={{ width: '100%', height: '100%' }}
+              >
+                <Image
+                  style={{
+                    backgroundColor: colors.BLACK + '44',
+                    flex: 1,
+                    resizeMode: coverImage ? 'cover' : 'contain',
+                    borderRadius: 0,
+                    //   marginBottom: 10,
+                  }}
+                  resizeMode="contain"
+                  resizeMethod="resize"
+                  source={{ uri: `${constants.BACKEND}/${item}` }}
+                />
+              </SharedElement>
             </View>
           </TouchableOpacity>
         )}
