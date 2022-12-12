@@ -107,6 +107,7 @@ const Details = ({ navigation, route }) => {
           <CustomText
             content={item.name}
             style={{ fontFamily: 'db', fontSize: 40 }}
+            sharedElementId={`place-${item.id}-name`}
           />
         </View>
         <View
@@ -209,8 +210,8 @@ const Details = ({ navigation, route }) => {
 }
 
 Details.sharedElements = (route, otherRoute, showing) => {
-  // console.log(route.params)
-  return [`place-${route.params.id}-image-0`]
+  const item = route.params
+  return [{ id: `place-${item.id}-image-0`, animation: 'move' }]
 }
 
 export default Details

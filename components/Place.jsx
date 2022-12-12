@@ -97,7 +97,9 @@ const Place = ({
           <CustomText
             content={name}
             style={{ fontFamily: 'db', fontSize: 30 }}
+            sharedElementId={`place-${id}-name`}
           />
+
           <View
             style={{
               flexDirection: 'row',

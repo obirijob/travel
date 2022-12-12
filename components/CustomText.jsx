@@ -1,9 +1,15 @@
 /** @format */
 
-import { useFonts } from 'expo-font';
-import { Text } from 'moti';
+import { useFonts } from 'expo-font'
+import { Text } from 'moti'
+import { SharedElement } from 'react-navigation-shared-element'
 
-export default function CustomText({ style, content, animate }) {
+export default function CustomText({
+  style,
+  content,
+  animate,
+  sharedElementId,
+}) {
   const [fontsLoaded] = useFonts({
     mv: require('../assets/fonts/Montserrat/variable.ttf'),
     mvi: require('../assets/fonts/Montserrat/variableitalic.ttf'),
@@ -30,13 +36,15 @@ export default function CustomText({ style, content, animate }) {
     dr: require('../assets/fonts/Dancing_Script/static/DancingScript-Regular.ttf'),
     dsb: require('../assets/fonts/Dancing_Script/static/DancingScript-SemiBold.ttf'),
     dv: require('../assets/fonts/Dancing_Script/variable.ttf'),
-  });
+  })
   if (!fontsLoaded) {
-    return <Text>{content}</Text>;
+    return <Text>{content}</Text>
   }
   return (
-    <Text style={{ ...style }} animate={{ ...animate }}>
-      {content}
-    </Text>
-  );
+    <SharedElement id={sharedElementId}>
+      <Text style={{ ...style }} animate={{ ...animate }}>
+        {content}
+      </Text>
+    </SharedElement>
+  )
 }
