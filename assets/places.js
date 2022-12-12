@@ -41,7 +41,7 @@ const places = [
       'safarimara.jpg',
       'marasafari.jpg',
     ],
-    location: 'Mombasa',
+    location: 'Narok',
     country: 'Kenya',
     details:
       'One of the most unique sights in the Fare Islands are "Drangarnir". Drangarnir are two sea stacks between Vágar and the islet Tindhólmur.',
@@ -66,11 +66,10 @@ const places = [
     id: 5,
     name: 'Kisii Travellers',
     images: [
-      'naturebg.jpg',
+      'waterfall.jpg',
       'cottagehouse.jpg',
       'oldhouse.jpg',
       'bycycle.jpg',
-      'waterfall.jpg',
       'lonehouse.jpg',
       'oldhouse.jpg',
     ],
@@ -94,7 +93,7 @@ const categories = [
   {
     id: 2,
     label: 'Safari',
-    count: places.filter(item => item.categories.includes(3)).length,
+    count: places.filter(item => item.categories.includes(2)).length,
     icon: '',
     color: 'green',
   },

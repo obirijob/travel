@@ -1,7 +1,7 @@
 /** @format */
 
 import { View } from 'moti'
-import React from 'react'
+import React, { useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import {
   faHouse,
@@ -12,17 +12,20 @@ import {
 import colors from '../assets/Colors'
 import CustomText from './CustomText'
 import { Dimensions, TouchableOpacity } from 'react-native'
+import { AppDataContext } from '../App'
 
-const Menu = () => {
+const Menu = ({ setSearch }) => {
   const { width } = Dimensions.get('screen')
-  const itemWidth = (width - 40) / 5
+  const itemWidth = width / 5
+
+  const appDataContext = useContext(AppDataContext)
   return (
     <View
       style={{
-        marginTop: 20,
+        marginTop: -20,
         flexDirection: 'row',
         alignItems: 'flex-end',
-        width: width - 40,
+        width: width,
       }}
     >
       <TouchableOpacity>
@@ -55,6 +58,10 @@ const Menu = () => {
             marginBottom: 10,
             alignItems: 'center',
             justifyContent: 'center',
+            shadowColor: colors.GREEN,
+            shadowOffset: { width: 0, height: 0 },
+            shadowOpacity: 0.8,
+            shadowRadius: 15,
           }}
         >
           <FontAwesomeIcon icon={faPlus} color={colors.WHITE} size={40} />
@@ -71,7 +78,7 @@ const Menu = () => {
           <FontAwesomeIcon icon={faHeart} size={26} color={colors.GREEN} />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => appDataContext.switchSearch(true)}>
         <View
           style={{
             width: itemWidth,
